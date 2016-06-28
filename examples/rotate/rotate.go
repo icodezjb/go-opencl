@@ -20,14 +20,15 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/pseudomind/go-opencl/cl"
-	"github.com/pseudomind/go-opencl/raw"
 	"image"
 	"image/jpeg"
 	"image/png"
 	"io"
 	"math"
 	"os"
+
+	"github.com/mathuin/go-opencl/cl"
+	"github.com/mathuin/go-opencl/raw"
 )
 
 var (

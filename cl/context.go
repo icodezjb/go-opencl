@@ -194,7 +194,7 @@ func (c *Context) NewProgramFromSource(prog []byte) (*Program, error) {
 	var c_program C.cl_program
 	var err C.cl_int
 
-	srcPtr := (*C.char)(unsafe.Pointer(&prog[0]))
+	srcPtr := C.CString(string(prog)) // (*C.char)(unsafe.Pointer(&prog[0]))
 	length := (C.size_t)(len(prog))
 	if c_program = C.clCreateProgramWithSource(c.id, 1, &srcPtr, &length, &err); err != C.CL_SUCCESS {
 		return nil, Cl_error(err)
