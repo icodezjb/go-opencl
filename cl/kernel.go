@@ -34,9 +34,7 @@ package cl
 */
 import "C"
 
-import (
-	"unsafe"
-)
+import "unsafe"
 
 type KernelProperty C.cl_kernel_info
 
@@ -177,11 +175,14 @@ func (k *Kernel) SetArg(index uint, arg interface{}) error {
 
 	switch t := arg.(type) {
 	case *Buffer:
-		ret = C.clSetKernelArg(k.id, C.cl_uint(index), C.size_t(unsafe.Sizeof(t.id)), unsafe.Pointer(&t.id))
+		tPtr := t.id
+		ret = C.clSetKernelArg(k.id, C.cl_uint(index), C.size_t(unsafe.Sizeof(t.id)), unsafe.Pointer(&tPtr))
 	case *Image:
-		ret = C.clSetKernelArg(k.id, C.cl_uint(index), C.size_t(unsafe.Sizeof(t.id)), unsafe.Pointer(&t.id))
+		tPtr := t.id
+		ret = C.clSetKernelArg(k.id, C.cl_uint(index), C.size_t(unsafe.Sizeof(t.id)), unsafe.Pointer(&tPtr))
 	case *Sampler:
-		ret = C.clSetKernelArg(k.id, C.cl_uint(index), C.size_t(unsafe.Sizeof(t.id)), unsafe.Pointer(&t.id))
+		tPtr := t.id
+		ret = C.clSetKernelArg(k.id, C.cl_uint(index), C.size_t(unsafe.Sizeof(t.id)), unsafe.Pointer(&tPtr))
 	case int32:
 		f := C.int(t)
 		ret = C.clSetKernelArg(k.id, C.cl_uint(index), C.size_t(unsafe.Sizeof(f)), unsafe.Pointer(&f))

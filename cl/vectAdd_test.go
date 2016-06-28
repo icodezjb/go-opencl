@@ -22,7 +22,7 @@ package cl
 import (
 	"testing"
 
-	"github.com/pseudomind/go-opencl/raw"
+	"github.com/mathuin/go-opencl/raw"
 )
 
 func Test_VectAdd(t *testing.T) {
