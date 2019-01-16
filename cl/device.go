@@ -64,6 +64,20 @@ var deviceTypeMesg = map[DeviceType]string{
 	//DEVICE_TYPE_CUSTOM: "Custom",
 }
 
+type LocalMemType int
+
+const (
+	LocalMemTypeNone   LocalMemType = C.CL_NONE
+	LocalMemTypeGlobal LocalMemType = C.CL_GLOBAL
+	LocalMemTypeLocal  LocalMemType = C.CL_LOCAL
+)
+
+var localMemTypeMap = map[LocalMemType]string{
+	LocalMemTypeNone:   "None",
+	LocalMemTypeGlobal: "Global",
+	LocalMemTypeLocal:  "Local",
+}
+
 type DeviceProperty C.cl_device_info
 
 const (
@@ -275,6 +289,13 @@ func (d *Device) Property(prop DeviceProperty) interface{} {
 		}
 		data = buf
 
+	case DEVICE_LOCAL_MEM_TYPE:
+		var memType C.cl_device_local_mem_type
+		if err := C.clGetDeviceInfo(d.id, C.cl_device_info(prop), C.size_t(unsafe.Sizeof(memType)), unsafe.Pointer(&memType), &length); err != C.CL_SUCCESS {
+			data = LocalMemType(C.CL_NONE)
+			break
+		}
+		data = localMemTypeMap[LocalMemType(memType)]
 	default:
 		return nil
 	}

@@ -85,7 +85,7 @@ func main() {
 			fmt.Println("  Constant buffer size:", device.Property(cl.DEVICE_MAX_CONSTANT_BUFFER_SIZE))
 			fmt.Println("  Max number of constant args:", device.Property(cl.DEVICE_MAX_CONSTANT_ARGS))
 
-			//fmt.Println("  Local memory type:", "TODO" /*device.Property(cl.DEVICE_LOCAL_MEM_TYPE)*/ )
+			fmt.Println("  Local memory type:", device.Property(cl.DEVICE_LOCAL_MEM_TYPE))
 			fmt.Println("  Local memory size:", device.Property(cl.DEVICE_LOCAL_MEM_SIZE))
 			//fmt.Println("  Kernel Preferred work group size multiple:", "TODO")
 			fmt.Println("  Error correction support:", device.Property(cl.DEVICE_ERROR_CORRECTION_SUPPORT))
