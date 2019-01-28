@@ -27,8 +27,8 @@ import (
 	"math"
 	"os"
 
-	"github.com/mathuin/go-opencl/cl"
-	"github.com/mathuin/go-opencl/raw"
+	"github.com/icodezjb/go-opencl/cl"
+	"github.com/icodezjb/go-opencl/raw"
 )
 
 var (
