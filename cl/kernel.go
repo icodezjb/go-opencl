@@ -189,6 +189,9 @@ func (k *Kernel) SetArg(index uint, arg interface{}) error {
 	case float32:
 		f := C.float(t)
 		ret = C.clSetKernelArg(k.id, C.cl_uint(index), C.size_t(unsafe.Sizeof(f)), unsafe.Pointer(&f))
+	case uint64:
+		f := C.ulong(t)
+		ret = C.clSetKernelArg(k.id, C.cl_uint(index), C.size_t(unsafe.Sizeof(f)), unsafe.Pointer(&f))
 	case []byte:
 		m := C.cl_uint4{0}
 

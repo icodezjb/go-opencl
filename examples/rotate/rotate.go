@@ -176,8 +176,7 @@ func main() {
 			}
 
 			if err := queue.Finish(); err != nil {
-				fmt.Printf("Finish failed: %+v \n", err)
-				return
+				fatalError(&customError{fmt.Sprintf("Finish failed: %+v \n", err)})
 			}
 
 			if outPixels, err = queue.EnqueueReadImage(destImage, true, [3]cl.Size{0, 0, 0}, [3]cl.Size{cl.Size(size.X), cl.Size(size.Y), 1}, 0, 0); err != nil {
